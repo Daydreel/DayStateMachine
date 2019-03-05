@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Newtonsoft.Json;
+using System.IO;
 
 public class DayFSMEditor : EditorWindow
 {
     //Load all the DayFSM for editor
     List<DayFSM> FSMs;
     List<string> someTitles;
+
+    string fsmName = "Hello World";
 
     [MenuItem("Tool/ Day FSM Editor")]
     private static void OpenWindow()
@@ -17,19 +21,72 @@ public class DayFSMEditor : EditorWindow
 
     private void OnGUI()
     {
-        if (someTitles != null)
+
+        FSMs = new List<DayFSM>();
+
+        if (FSMs != null)
         {
-            foreach (string title in someTitles)
+            loadOne();
+            foreach (DayFSM fsm in FSMs)
             {
-                GUILayout.Label(title, EditorStyles.boldLabel);
+                GUILayout.Label(fsm.name, EditorStyles.boldLabel);
             }
         }
         else
         {
             GUILayout.Label("No Titles", EditorStyles.boldLabel);
         }
+
+        fsmName = EditorGUILayout.TextField("Hello", fsmName);
+
+        if (GUILayout.Button("Save Title"))
+        {
+            DayFSM fsm = new DayFSM();
+            fsm.name = fsmName;
+
+            //TestFSM();
+
+            saveOne(fsm);
+        }
     }
 
     #region Save/Load
+
+    void loadOne()
+    {
+        // deserialize JSON directly from a file
+        using (StreamReader file = File.OpenText(@"Assets/DayStateMachine/Data/data.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            DayFSM FSM = (DayFSM)serializer.Deserialize(file, typeof(DayFSM));
+            FSMs.Add(FSM);
+        }
+    }
     #endregion
+
+    void saveOne(DayFSM fsm)
+    {
+        // serialize JSON directly to a file
+        using (StreamWriter file = File.CreateText(@"Assets/DayStateMachine/Data/data.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, fsm);
+        }
+    }
+
+    void TestFSM()
+    {
+        DayFSM testFSM = new DayFSM();
+
+        testFSM.name = "Hello World";
+
+        JsonConvert.SerializeObject(testFSM);
+
+        // serialize JSON directly to a file
+        using (StreamWriter file = File.CreateText(@"Assets/DayStateMachine/Data/data.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, testFSM);
+        }
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DayFSM : MonoBehaviour
+public class DayFSM : ScriptableObject
 {
 
     public State currentState;
