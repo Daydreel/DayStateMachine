@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class DayFSMEditor : NodeBasedEditor
+public class DayFSMEditor : EditorWindow
 {
-    List<FiniteStateMachine> FSMs;
+    //Load all the DayFSM for editor
+    List<DayFSM> FSMs;
 
     [MenuItem("Tool/ Day FSM Editor")]
     private static void OpenWindow()
     {
-        DayFSMEditor window = GetWindow<DayFSMEditor>();
-        window.titleContent = new GUIContent("Day FSM Editor");
+        DayFSMEditor window = GetWindow<DayFSMEditor>("Day FSM Editor");
     }
+
+    private void OnGUI()
+    {
+        
+    }
+
+    #region Save/Load
+
+    #endregion
 }

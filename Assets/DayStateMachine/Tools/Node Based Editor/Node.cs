@@ -8,16 +8,15 @@ using UnityEngine;
 public class Node
 {
     public Rect rect;
-    [XmlIgnore] public string title;
-    [XmlIgnore] public bool isDragged;
-    [XmlIgnore] public bool isSelected;
+    public string title;
+    public bool isDragged;
+    public bool isSelected;
 
     public ConnectionPoint inPoint;
     public ConnectionPoint outPoint;
-
-    [XmlIgnore] public GUIStyle style;
-    [XmlIgnore] public GUIStyle defaultNodeStyle;
-    [XmlIgnore] public GUIStyle selectedNodeStyle;
+    public GUIStyle style;
+    public GUIStyle defaultNodeStyle;
+    public GUIStyle selectedNodeStyle;
 
     [XmlIgnore] public Action<Node> OnRemoveNode;
 
