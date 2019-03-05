@@ -7,6 +7,8 @@ using System.IO;
 
 public class DayFSMEditor : EditorWindow
 {
+    //TODO build a state, a unique State
+
     //Load all the DayFSM for editor
     List<DayFSM> FSMs;
     List<string> someTitles;
@@ -62,7 +64,7 @@ public class DayFSMEditor : EditorWindow
             FSMs.Add(FSM);
         }
     }
-    #endregion
+
 
     void saveOne(DayFSM fsm)
     {
@@ -73,6 +75,8 @@ public class DayFSMEditor : EditorWindow
             serializer.Serialize(file, fsm);
         }
     }
+    #endregion
+
 
     void TestFSM()
     {

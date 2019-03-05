@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class DayFSM : ScriptableObject
 {
-
     public State currentState;
 
-    [HideInInspector]
-    public Animator animator;
+    public List<State> states;
 
     void Start()
     {
