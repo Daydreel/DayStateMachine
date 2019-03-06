@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Day/FSM")]
 public class DayFSM : ScriptableObject
 {
     public State currentState;
@@ -9,13 +10,19 @@ public class DayFSM : ScriptableObject
     //For editor purpose only
     public List<State> states;
 
+    //Get character behaviour and animator to entity
+    [HideInInspector]
+    public EntityBehaviour entityB;
+    [HideInInspector]
+    public Animator animator;
+
     void Start()
     {
         //Enters the state !
         currentState.onEnterState(this);
     }
 
-    //Call in the update of the GameObject Controller
+    //Call in the update of the GameObject fsm
     public void Update()
     {
         //If the state is physic related then FixedUpdate is used instead of Update
@@ -33,7 +40,7 @@ public class DayFSM : ScriptableObject
 
     }
 
-    //Call in the update of the GameObject Controller
+    //Call in the update of the GameObject fsm
     public void FixedUpdate()
     {
         //If the state isn't physic related then Update is used instead of FixedUpdate
