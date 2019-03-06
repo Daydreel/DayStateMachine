@@ -6,6 +6,7 @@ public class DayFSM : ScriptableObject
 {
     public State currentState;
 
+    //For editor purpose only
     public List<State> states;
 
     void Start()
