@@ -25,4 +25,4 @@ MonoBehaviour:
   MoveSpeed: 5
   JumpHeight: 10
   JumpSpeed: 10
-  rotationSpeed: 2
+  rotationSpeed: 5
