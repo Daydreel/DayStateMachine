@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "TW/Actions/Jump")]
+[CreateAssetMenu(menuName = "DayFSM/Actions/Jump")]
 public class Jump : Action
 {
     public AnimationCurve animCurve;
@@ -27,7 +27,7 @@ public class Jump : Action
         lastKey = animCurve.keys[animCurve.length - 1];
 
         //Get player Jump Height
-        jumpHeight = fsm.entityB.playerStats.JumpHeight;
+        jumpHeight = fsm.entityB.entityS.JumpHeight;
     }
 
     void PlayerJump(DayFSM fsm)

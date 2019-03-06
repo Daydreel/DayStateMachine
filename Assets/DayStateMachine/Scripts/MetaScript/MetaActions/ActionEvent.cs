@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "TW/Actions/ActionEvent")]
+[CreateAssetMenu(menuName = "DayFSM/Actions/ActionEvent")]
 public class ActionEvent : Action
 {
     public UnityEvent Event;

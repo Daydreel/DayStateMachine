@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "TW/Decisions/IsRunning")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/IsRunning")]
 public class IsMoving : Decision {
     public override bool Decide(DayFSM fsm)
     {

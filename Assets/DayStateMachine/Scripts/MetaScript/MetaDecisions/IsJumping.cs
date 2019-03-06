@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TW/Decisions/IsJumping")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/IsJumping")]
 public class IsJumping : Decision {
     public override bool Decide(DayFSM fsm)
     {

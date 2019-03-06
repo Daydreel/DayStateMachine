@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TW/OnExit/EndTriggerAnim")]
+[CreateAssetMenu(menuName = "DayFSM/OnExit/EndTriggerAnim")]
 public class EndTriggerAnim : OnExit
 {
     [Tooltip("Animation Enum can be found in the player fsm. Must be set up in the animator first then added in the PlayerMoveSet enum")]

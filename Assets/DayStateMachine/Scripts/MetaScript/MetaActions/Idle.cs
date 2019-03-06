@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TW/Actions/Idle")]
+[CreateAssetMenu(menuName = "DayFSM/Actions/Idle")]
 public class Idle : Action
 {
     public override void Act(DayFSM fsm)

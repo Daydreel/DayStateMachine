@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Day/FSM")]
+[CreateAssetMenu(menuName = "DayFSM/FSM")]
 public class DayFSM : ScriptableObject
 {
     public State currentState;
 
     //For editor purpose only
+    [HideInInspector]
     public List<State> states;
 
     //Get character behaviour and animator to entity

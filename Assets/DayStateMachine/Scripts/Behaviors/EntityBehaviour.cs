@@ -16,7 +16,7 @@ public class EntityBehaviour : MonoBehaviour {
 
     private Animator animator;
 
-    public PlayerStats playerStats;
+    public EntityStats entityS;
    
     public DayFSM fsm;
 

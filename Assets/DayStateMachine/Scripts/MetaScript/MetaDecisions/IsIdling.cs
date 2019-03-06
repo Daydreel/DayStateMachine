@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "TW/Decisions/IsIdling")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/IsIdling")]
 public class IsIdling : Decision {
     public override bool Decide(DayFSM fsm)
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TW/Decisions/Timer")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/Timer")]
 public class DecisionTimer : Decision
 {
     public float Duration = 2.0f;

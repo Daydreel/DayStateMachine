@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TW/Data/PlayerStats")]
+[CreateAssetMenu(menuName = "DayFSM/Data/entityS")]
 
-public class PlayerStats : ScriptableObject {
+public class EntityStats : ScriptableObject {
     //Player Statistics
     //Player hit points
     public int MaxHitPoints = 1000; //TODO

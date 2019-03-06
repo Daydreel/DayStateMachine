@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TW/Actions/Run")]
+[CreateAssetMenu(menuName = "DayFSM/Actions/Run")]
 public class Run : Action
 {
     //The direction vector of the run
@@ -37,9 +37,9 @@ public class Run : Action
         //Get all the components of the player
         Transform transform = fsm.entityB.transform;
         Rigidbody body = fsm.entityB.body;
-        //Get the speed from playerStats ScriptableObject
-        float speed = fsm.entityB.playerStats.MoveSpeed;
-        float rotationSpeed = fsm.entityB.playerStats.rotationSpeed;
+        //Get the speed from entityS ScriptableObject
+        float speed = fsm.entityB.entityS.MoveSpeed;
+        float rotationSpeed = fsm.entityB.entityS.rotationSpeed;
         //Make the player turn
         if (moveDirection != Vector3.zero)
         {

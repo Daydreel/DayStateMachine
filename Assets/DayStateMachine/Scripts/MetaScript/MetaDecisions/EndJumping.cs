@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "TW/Decisions/EndJumping")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/EndJumping")]
 public class EndJumping : Decision {
     static bool airborne = false;
 

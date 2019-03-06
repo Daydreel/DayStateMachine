@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TW/Decisions/IsGrounded")]
+[CreateAssetMenu(menuName = "DayFSM/Decisions/IsGrounded")]
 public class IsGrounded : Decision
 {
     public float Radius;

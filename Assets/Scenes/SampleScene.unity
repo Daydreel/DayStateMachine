@@ -366,6 +366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Amane
       objectReference: {fileID: 0}
+    - target: {fileID: 172388, guid: b342a4b03a8d0504690d4c555fd08a9b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 463472, guid: b342a4b03a8d0504690d4c555fd08a9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18716042
@@ -412,3 +416,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b342a4b03a8d0504690d4c555fd08a9b, type: 3}
+--- !u!1 &917269204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 172388, guid: b342a4b03a8d0504690d4c555fd08a9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 917269203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &917269205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917269204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696454fe95d1d89449d37d14d04f41e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityS: {fileID: 0}
+  fsm: {fileID: 0}
+  cam: {fileID: 0}
+  body: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
