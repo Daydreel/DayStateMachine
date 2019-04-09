@@ -8,16 +8,17 @@ public class DayFSM : ScriptableObject
     public State currentState;
 
     //For editor purpose only
-    [HideInInspector]
     public List<State> states;
 
     //Get character behaviour and animator to entity
     [HideInInspector]
     public EntityBehaviour entityB;
     [HideInInspector]
+    public BossBehaviour bossB;
+    [HideInInspector]
     public Animator animator;
 
-    void Start()
+    public void Start()
     {
         //Enters the state !
         currentState.onEnterState(this);
@@ -26,10 +27,6 @@ public class DayFSM : ScriptableObject
     //Call in the update of the GameObject fsm
     public void Update()
     {
-        //If the state is physic related then FixedUpdate is used instead of Update
-        if (currentState.isPhysic)
-            return;
-
         if (currentState == null)
         {
             Debug.LogError("No State");
@@ -38,7 +35,6 @@ public class DayFSM : ScriptableObject
         {
             currentState.UpdateState(this);
         }
-
     }
 
     //Call in the update of the GameObject fsm
@@ -54,9 +50,8 @@ public class DayFSM : ScriptableObject
         }
         else
         {
-            currentState.UpdateState(this);
+            currentState.PhysicUpdateState(this);
         }
-
     }
 
     public void TransitionToState(State nextState)

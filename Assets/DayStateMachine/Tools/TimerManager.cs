@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TimerManager : Singleton<TimerManager>
 {
-    //TODO Singleton
-    //TODO Global as a gameManager or attached to it ;)
+    //Global as a gameManager or attached to it ;)
 
     protected TimerManager() { }
 
@@ -18,7 +17,7 @@ public class TimerManager : Singleton<TimerManager>
     #endregion
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         time = 0;
     }
@@ -36,6 +35,7 @@ public class TimerManager : Singleton<TimerManager>
 
     public void StartTimer()
     {
+        ResetTimer();
         isTimerOn = true;
     }
 
@@ -47,7 +47,12 @@ public class TimerManager : Singleton<TimerManager>
     public void StopTimer()
     {
         PauseTimer();
-        time = 0;
+        ResetTimer();
+    }
+
+    public void ResetTimer(float value = 0)
+    {
+        time = value;
     }
 
     public void CountDown(float value)

@@ -5,12 +5,26 @@ using UnityEngine;
 //The list of every animation triggers that the character can do.
 public enum PlayerMoveSet
 {
+    Null,
     Idle,
     Run,
     Jump,
     Fall,
-    Land
+    Land,
+    Attack,
+    Execution,
+    Dodge
 }
+
+//List every Player Inpput names as written in the input manager
+public enum PlayerInput
+{
+    Jump, // X
+    Attack, // Square
+    Execution, // Triangle
+    Dodge // Circle
+}
+
 
 public class EntityBehaviour : MonoBehaviour {
 
@@ -18,7 +32,11 @@ public class EntityBehaviour : MonoBehaviour {
 
     public EntityStats entityS;
    
+    //The state machine reference
     public DayFSM fsm;
+
+    //Input buffer recorded for some milliseconds
+    public DayInputBuffer inputBuffer;
 
     [HideInInspector]
     public Camera cam;
@@ -28,30 +46,34 @@ public class EntityBehaviour : MonoBehaviour {
 
     public LayerMask groundLayer;
 
-    bool isGrounded = true;
+    protected bool isGrounded = true;
 
     // Use this for initialization
-    void Start () {
+    public virtual void Start () {
         animator = GetComponent<Animator>();
         cam = Camera.main;
         body = GetComponent<Rigidbody>();
-
+        inputBuffer = new DayInputBuffer();
         
         if (fsm != null)
         {
             //Give player animator to state fsm
             fsm.animator = animator;
             fsm.entityB = this;
+            fsm.Start();
+
+            Debug.Log(this);
         }
     }
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
+        inputBuffer.Listen();
         fsm.Update();
-
+        //Debug.Log("IsGrounded: " + CheckIsGround());
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         fsm.FixedUpdate();
     }

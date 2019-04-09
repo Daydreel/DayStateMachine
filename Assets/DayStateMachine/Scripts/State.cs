@@ -10,6 +10,9 @@ public class State : ScriptableObject {
     [Tooltip("If the state must use fixedUpdate instead of Update check the isPhysic")]
     public bool isPhysic = false;
 
+    [Tooltip("Leave null to not force the fsm to stay in the current state. If there is a decision, it will stay in the current state until the decision is true")]
+    public Decision ForceStayInState;
+
     public OnEnter[] onEnters;
     public OnExit[] onExits;
 
@@ -19,29 +22,62 @@ public class State : ScriptableObject {
     //The UpdateState is called every frame
     public void UpdateState(DayFSM FSM)
     {
-        //Go through all registered actions
-        foreach (Action action in actions)
-        {
-            #region Warnings
-            //Some warnings
-            if (action == null)
-            {
-                Debug.LogWarning("Carefull, you have setup an empty action !! check this state again : " + this);
-            }
-            #endregion
 
-            action.Act(FSM);
+        if (!isPhysic)
+        {
+            //Go through all registered actions
+            foreach (Action action in actions)
+            {
+                #region Warnings
+                //Some warnings
+                if (action == null)
+                {
+                    Debug.LogWarning("Carefull, you have setup an empty action !! check this state again : " + this);
+                }
+                #endregion
+
+                action.Act(FSM);
+            }
         }
 
-        //Check if 
-        CheckTransitions(FSM);
+        //Check if there is a Decision for Force Stay in state or if ForceStayInState is true
+        if (ForceStayInState == null || ForceStayInState.Decide(FSM))
+        {
+            CheckTransitions(FSM);
+        }
+    }
+
+    //The UpdateState is called every frame
+    public void PhysicUpdateState(DayFSM FSM)
+    {
+        if (isPhysic)
+        {
+            //Go through all registered actions
+            foreach (Action action in actions)
+            {
+                #region Warnings
+                //Some warnings
+                if (action == null)
+                {
+                    Debug.LogWarning("Carefull, you have setup an empty action !! check this state again : " + this);
+                }
+                #endregion
+
+                action.Act(FSM);
+            }
+        }
     }
 
     //When entering the state, go through every actions initialise,OnExit and decision initialise
     public void onEnterState(DayFSM FSM)
     {
+        Debug.Log(this);
 
-
+        //Initialise the ForceStayInState if not null
+        if (ForceStayInState)
+        {
+            ForceStayInState.Initialise(FSM);
+        }
 
         //Go through all registered actions
         foreach (OnEnter onEnter in onEnters)
@@ -65,15 +101,18 @@ public class State : ScriptableObject {
                 Debug.LogWarning("Carefull, you have setup an empty action !! check this state again : " + this);
             }
             #endregion
+            if (action != null)
+            {
+                action.Initialise(FSM);
+            }
             
-            action.Initialise(FSM);
         }
 
         //Initialise Decision State 
         foreach (Transition transition in transitions)
         {
-            transition.decision.Initialize(FSM);
-            Debug.Log("On Enter");
+            transition.decision.Initialise(FSM);
+            //Debug.Log("On Enter");
         }
     }
 
@@ -110,7 +149,7 @@ public class State : ScriptableObject {
     private void CheckTransitions(DayFSM FSM)
     {
         foreach (Transition transition in transitions)
-        {
+        { 
             bool decisionSucceeded = transition.decision.Decide(FSM);
 
             if (decisionSucceeded)
